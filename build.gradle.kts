@@ -14,10 +14,14 @@ application {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core:${ktorVersion}")
-    implementation("io.ktor:ktor-server-netty:${ktorVersion}")
-    implementation("io.ktor:ktor-server-websockets:${ktorVersion}")
+    implementation("io.ktor:ktor-server-core:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("io.ktor:ktor-server-websockets:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.5.6")
+
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion") // The client engine
+    implementation("io.ktor:ktor-client-websockets:$ktorVersion")
     testImplementation(kotlin("test"))
 }
 
