@@ -4,8 +4,8 @@ import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.*
-import java.util.Scanner
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
 
@@ -26,16 +26,13 @@ fun main() = runBlocking {
             }
         }
 
-        val scanner = Scanner(System.`in`)
-        while (scanner.hasNextLine()) {
-            val message = scanner.nextLine()
-
+        while (true) {
+            val message = readlnOrNull() ?: continue
             if (message.equals("/quit", ignoreCase = true)) {
                 println("Disconnecting...")
                 close(CloseReason(CloseReason.Codes.NORMAL, "Client exited"))
                 break
             }
-
             send(Frame.Text(message))
         }
 
